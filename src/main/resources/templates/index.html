@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Messaging App</title>
+</head>
+<body>
+    <h1>Simple Messaging</h1>
+
+    <div>
+        <h2>Send a Message</h2>
+        <form action="/send" method="post">
+            <input type="text" name="message" placeholder="Enter your message">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <hr/>
+
+    <div>
+        <h2>Received Messages</h2>
+        <ul th:if="${not #lists.isEmpty(messages)}">
+            <li th:each="msg : ${messages}" th:text="${msg}"></li>
+        </ul>
+        <p th:if="${#lists.isEmpty(messages)}">No messages yet.</p>
+    </div>
+
+    <hr/>
+
+    <div>
+        <h2>Regularly Updated Data</h2>
+        <p>Latest Data: <span th:text="${latestData}"></span></p>
+    </div>
+
+    <script type="text/javascript">
+        setTimeout(function() {
+            location.reload();
+        }, 3500); // Reload the page every 2.5 seconds
+    </script>
+</body>
+</html>
